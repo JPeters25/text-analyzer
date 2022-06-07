@@ -34,9 +34,38 @@ function numberOfOccurrencesInText(word, text) {
   return wordCount;
 }
 
+function frequencyInText(word, text) {
+  if (noInputtedWord(word, text)) {
+    return 0;
+  }
+  const frequentWordArray = text.split(" ");
+  let frequencyOutputArray = [];
+  let iCounter = 0;
+  let arrayLength = frequentWordArray.length;
+  frequentWordArray.sort();
+  for (let i = 0; i < arrayLength; i++) {
+    let element = frequentWordArray.at(iCounter);
+    let next = frequentWordArray.at(iCounter + 1);
+    if (element.toLowerCase() === next) {
+      frequentWordArray.splice(iCounter, 1);
+    }
+    else{
+      let repeatedWord = numberOfOccurrencesInText(element, text) + " " + element;
+      frequencyOutputArray.push(repeatedWord);
+      iCounter ++;
+      console.log(repeatedWord, frequencyOutputArray);
+    }
+  };
+  frequencyOutputArray.sort();
+  frequencyOutputArray.reverse();
+  let frequencyOutputString = frequencyOutputArray.join(" ");
+  console.log(frequencyOutputString);
+  return "<p>" + frequencyOutputString + "</p>";
+}
+
 // UI Logic
 
-function removeOffensiveWords(text) {
+function removeOffensiveWords(words,text) {
   const wordArray = text.split(" ");
   let i = 0;
   wordArray.forEach(function(element) {
@@ -78,5 +107,6 @@ $(document).ready(function(){
     $("#total-count").html(wordCount);
     $("#selected-count").html(occurrencesOfWord);
     $("#bolded-passage").html(boldPassage(word, passage));
+    $("#word-frequency").html(frequencyInText(word, passage));
   });
 });

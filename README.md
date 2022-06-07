@@ -112,3 +112,10 @@ const word = "hello";
 const text = "hello there";
 boldPassage(word, text);
 Expected Output: "<p><b>hello</b> there</p>"
+
+Test: "It should only wrap part of the word that match in `b` tags but not words or parts that don't."
+Code:
+const word = "pen";
+const text = "happen";
+boldPassage(word, text);
+Expected Output: "<p>hap<b>pen</b></p>"
