@@ -56,7 +56,8 @@ function boldPassage(word, text) {
   let textArray = text.split(" ");
   textArray.forEach(function(element, index) {
     if (element.toLowerCase().includes(word.toLowerCase())) {
-      htmlString = htmlString.concat("<b>" + element + "</b>");
+      let short = element.replace(word , "");
+      htmlString = htmlString.concat(short + "<b>" + word + "</b>");
     } else {
       htmlString = htmlString.concat(element);
     }
