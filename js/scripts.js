@@ -33,11 +33,14 @@ return wordCount;
 }
 
 function removeOffensiveWords(text) {
-const i = 0;
-wordArray.array.forEach(function(element) {
-  if (element.toLowercase().includes("zoinks")){
-    wordArray.splice(i, 1, "******");
-  }
-i++;
-})
+  const wordArray = text.split(" ");
+  let i = 0;
+  wordArray.forEach(function(element) {
+    if (element.toLowerCase().includes("zoinks") || element.toLowerCase().includes("muppeteer") || element.toLowerCase().includes("biffaroni") || element.toLowerCase().includes("loopdaloop")) {
+      wordArray.splice(i, 1, "******");
+    }
+  i++;
+});
+return(wordArray);
+// removeOffensiveWords("jeepers jinkies zoinks");
 }
